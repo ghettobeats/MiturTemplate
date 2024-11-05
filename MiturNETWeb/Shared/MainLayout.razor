@@ -1,0 +1,76 @@
+﻿@using MiturNetWeb.Pages.Usuario
+@using Radzen
+@using Radzen.Blazor
+@using MiturNetWeb.Layouts
+@using MiturNetShared.Services
+
+@inherits MainLayoutComponent
+
+<RadzenDialog />
+<RadzenNotification />
+<RadzenTooltip />
+<RadzenContextMenu />
+
+<RadzenLayout class="rz-shadow-3" Style="grid-template-areas: 'rz-sidebar rz-header' 'rz-sidebar rz-body'">
+    <RadzenHeader>
+        <ChildContent>
+            <AuthorizeView>
+                <Authorized>  
+
+                        <div class="col-md-12 rz-text-align-right">
+                            <RadzenProfileMenu Visible="true" Click="@Profilemenu0Click">
+                                <Template>
+                                    <RadzenImage Path="assets/images/gravatar_pic.png" style="border-radius: 16px; height: 32px; width: 32px" />
+                                </Template>
+                                <ChildContent>
+                                    <RadzenProfileMenuItem Value="ResetPassword" Icon="lock_reset" Text="Cambiar Contraseña">
+                                    </RadzenProfileMenuItem>
+                                    <RadzenProfileMenuItem Value="Logout" Icon="logout" Text="Salir">
+                                    </RadzenProfileMenuItem>
+                                </ChildContent>
+                            </RadzenProfileMenu>
+                        </div>   
+                </Authorized>
+                <NotAuthorized>
+                    <LoginRedirect />
+                </NotAuthorized>
+            </AuthorizeView>
+        </ChildContent>
+    </RadzenHeader>
+    <RadzenSidebar @ref="sidebar0" Style="background-color: #05004b; z-index: 2">
+        <div class="py-3 py-lg-4" style="color: var(--rz-primary-light); padding: var(--rz-panel-menu-item-padding); border-bottom: var(--rz-panel-menu-item-border); display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+            <RadzenImage Path="" />
+        </div>
+      <NavMenu></NavMenu>
+    </RadzenSidebar>
+    <AuthorizeView>
+        <Authorized>
+            <RadzenBody @ref="body0">
+                <ChildContent>
+                    <RadzenContentContainer Name="main">
+                        @Body
+                    </RadzenContentContainer>
+                </ChildContent>
+            </RadzenBody>
+        </Authorized>
+    </AuthorizeView>
+</RadzenLayout>
+@code {
+
+    protected async Task Profilemenu0Click(dynamic args)
+    {
+        if (args.Value == "Logout")
+        {
+            await SecurityService.Logout();
+            UriHelper.NavigateTo("/login");
+        }
+
+        if (args.Value == "ResetPassword")
+        {
+            await DialogService.OpenAsync<ResetUsuario>("Contraseña Usuario", new Dictionary<string, object>() { { "id", "" } });
+            await InvokeAsync(() => { StateHasChanged(); });
+        }
+
+    }
+
+}

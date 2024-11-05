@@ -1,0 +1,109 @@
+﻿@*@page "/"
+@namespace MiturNetWeb.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@{
+    //Layout = null;
+    Layout = "_Layout";
+}
+
+@*<component type="typeof(App)" render-mode="ServerPrerendered" />*@
+@*<app>@(await Html.RenderComponentAsync<App>(RenderMode.Server))</app>*@
+@*@(await Html.RenderComponentAsync<App>(RenderMode.Server))
+*@
+
+@page "/"
+@namespace MiturNetWeb.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Radzen
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        Template 
+    </title>
+    <base href="~/" />
+
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="MiturNetWeb.styles.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="pivottable/pivot.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    @*<link rel="stylesheet" href="_content/Radzen.Blazor/css/default-base.css">*@
+
+    @*   <link rel="stylesheet" href="_content/Radzen.Blazor/css/standard-base.css">
+    <link rel="stylesheet" href="_content/Radzen.Blazor/css/standard.css">
+    *@
+    @* <link rel="stylesheet" href="css/site.css" /> *@
+
+    <link rel="stylesheet" href="css/standard-base.css" />
+    <link rel="stylesheet" href="css/standard.css" />
+
+    @* Estos <link rel="stylesheet" href="css/standard.css" />
+    <link href="assets/css/general.css" rel="stylesheet" /> *@
+
+    @* <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />*@
+    <component type="typeof(HeadOutlet)" render-mode="Server" />
+    @* <component type="typeof(RadzenTheme)" render-mode="ServerPrerendered" param-Theme="@("material")" /> *@
+
+</head>
+<body>
+    <app>@(await Html.RenderComponentAsync<App>(RenderMode.Server))</app>
+    @* 829.913.6695 Beto *@
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="pivottable/pivot.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+
+    <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
+   
+    <script src="_framework/blazor.server.js"></script>
+    @*    <script>
+    Blazor.start({
+    reconnectionOptions: {
+    maxRetries: 10,
+    retryIntervalMilliseconds: 8000
+    }
+    });
+    </script>*@
+    @*    <script>
+    // Wait until a reload button appears
+    new MutationObserver((mutations, observer) => {
+    if (document.querySelector(&#039; #components-reconnect-modal h5 a&#039;)) {
+    // Now every 10 seconds, see if the server appears to be back, and if so, reload
+    async function attemptReload() {
+    await fetch(&#039;&#039;); // Check the server really is back
+    location.reload();
+    }
+    observer.disconnect();
+    attemptReload();
+    setInterval(attemptReload, 2000);
+    }
+    }).observe(document.body, { childList: true, subtree: true });
+    </script>*@
+
+    <script>
+        new MutationObserver((mutations, observer) => {
+            if (document.querySelector(&#039; #components - reconnect - modal h5 a &#039;)) {
+            async function attemptReload() {
+                await fetch(&#039;&#039;);
+                location.reload();
+            }
+            observer.disconnect();
+            attemptReload();
+            setInterval(attemptReload, 2000);
+        }
+                }).observe(document.body, { childlist: true, subtree: true });
+    </script>
+
+
+</body>
+</html>

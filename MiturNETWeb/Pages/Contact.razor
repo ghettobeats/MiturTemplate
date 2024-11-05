@@ -1,0 +1,31 @@
+﻿@page "/contactos"
+@layout MainLayout
+@inherits BaseComponentInject
+
+<h3>Welcome</h3>
+@code {
+   
+    public Response<IEnumerable<Object>> response { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+    public async Task LoadData()
+    {
+        isLoading = true;
+        response = await _client.Get<IEnumerable<Object>>("Persona");
+        if (response.Data == null)
+        {
+            //loading = true;
+        }
+        else
+        {
+            // dataUsuario = response.Data.ToList().AsQueryable();
+            // isLoading = false;
+            // await dbGridUsuario.Reload();
+
+        }
+        await InvokeAsync(() => { StateHasChanged(); });
+    }
+
+}

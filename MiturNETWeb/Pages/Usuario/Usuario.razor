@@ -1,0 +1,64 @@
+﻿@page "/usuario"
+@layout MainLayout
+@inherits BaseComponentInject
+
+<RadzenContent Container="main">
+    <ChildContent>
+
+        <RadzenHeading Size="H2" Text="Administración de Usuario" style="margin-bottom: 4px" />
+        <RadzenHeading Size="H5" Text="En esta sección podrá gestionar las descripciones de los usuarios en el que se econtrarán los empleados." style="margin-bottom: 10px" />
+        <div class="row" style="margin-top: 5px">
+            <div class="col-md-12">
+                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-top:10px;" Text="Nuevo" Click="@btnAdd">
+                </RadzenButton>
+                <RadzenSplitButton Icon="get_app" style="margin-left: 10px; margin-bottom: 10px" Text="Exportar" Click="@btnExportar">
+                    <ChildContent>
+                        <RadzenSplitButtonItem Text="Excel" Value="xlsx">
+                        </RadzenSplitButtonItem>
+                    </ChildContent>
+                </RadzenSplitButton>
+                <RadzenDataGrid @ref="dbGridUsuario" AllowFiltering="true" AllowColumnResize="true" FilterMode="FilterMode.Advanced" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                                PageSize="@pageSize" AllowPaging="true" AllowSorting="true" IsLoading=@isLoading Responsive="true"
+                                Data="@dataUsuario" TItem="MiturNetShared.Model.Operation.Usuario" ColumnWidth="300px"
+                                LogicalFilterOperator="LogicalFilterOperator.Or"
+                                PageSizeOptions="@pageSizeOptions" ShowPagingSummary="@showPagerSummary" PagingSummaryFormat="@pagingSummaryFormat" 
+                                PageSizeText="@pageSizeText" PagerHorizontalAlign="HorizontalAlign.Right" >
+                    <EmptyTemplate>
+                        <p style="color: lightgrey; font-size: 24px; text-align: center; margin: 2rem;">@emptyText</p>
+                    </EmptyTemplate>
+                    <Columns>
+                        <RadzenDataGridColumn TItem="MiturNetShared.Model.Operation.Usuario" Property="UserName" Title="Usuario" Frozen="false" Width="70px" TextAlign="TextAlign.Center">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="MiturNetShared.Model.Operation.Usuario" Property="VFirstName" Title="Nombre(s)" Frozen="false" Width="90px" />
+                        <RadzenDataGridColumn TItem="MiturNetShared.Model.Operation.Usuario" Property="VLastName" Title="Apellidos" Frozen="false" Width="90px" />
+                        <RadzenDataGridColumn TItem="MiturNetShared.Model.Operation.Usuario" Property="RoleName" Title="Roles" Frozen="false" Width="90px" />
+
+@*                        <RadzenDataGridColumn TItem="MiturNetShared.Model.Operation.UserInfo" Property="idEstatus" Title="Estatus" Frozen="false" Width="70px" Filterable="false" TextAlign="TextAlign.Center">
+                            <Template Context="details">
+                                @if (details.idEstatus == 1)
+                                {
+                                    <RadzenBadge BadgeStyle="BadgeStyle.Success" Text="Activo" IsPill="true" />
+                                }
+                                else if (details.idEstatus == 2)
+                                {
+                                    <RadzenBadge BadgeStyle="BadgeStyle.Light" Text="Inactivo" IsPill="true" />
+                                }
+                            </Template>
+                        </RadzenDataGridColumn>*@
+                        <RadzenDataGridColumn TItem="MiturNetShared.Model.Operation.Usuario" Property="Id" Title="Acciones" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                            <Template Context="modelUsuario">
+                                <div class="row">
+                                    <div class="col">
+                                        <RadzenButton ButtonStyle="ButtonStyle.Secondary" Icon="edit" Size="ButtonSize.Medium" Click="@((args) =>btnEdit(args, modelUsuario))" @onclick:stopPropagation="true" />
+                                        <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium" Click="@((args) =>btnDelete(args, modelUsuario))" @onclick:stopPropagation="true" />
+                                            <RadzenButton ButtonStyle="ButtonStyle.Warning" Icon="lock_reset" Size="ButtonSize.Medium" Click="@((args) =>btnResetPassowrd(args, modelUsuario))" @onclick:stopPropagation="true" />
+                                    </div>
+                                </div>
+                            </Template>
+                        </RadzenDataGridColumn>
+                    </Columns>
+                </RadzenDataGrid>
+            </div>
+        </div>
+    </ChildContent>
+</RadzenContent>

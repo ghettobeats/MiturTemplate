@@ -1,0 +1,81 @@
+﻿@page "/tipo-puesto"
+@layout MainLayout
+@inherits TipoPuestoComponent
+
+<RadzenContent Container="main">
+    <ChildContent>
+        <RadzenHeading Size="H2" Text="Tipo de Turno" style="margin-bottom: 4px" />
+
+        <RadzenHeading Size="H5" Text="En esta sección podrá gestionar las descripciones de los tipos de puestos en el que se econtrarán los empleados." style="margin-bottom: 10px" />
+        <div class="row" style="margin-top: 5px">
+            <div class="col-md-12">
+                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px; margin-top:10px;" Text="Nuevo" Click="@Button0Click">
+                </RadzenButton>
+                <RadzenSplitButton Icon="get_app" style="margin-left: 10px; margin-bottom: 10px" Text="Exportar" Click="@Splitbutton0Click">
+                    <ChildContent>
+                        <RadzenSplitButtonItem Text="Excel" Value="xlsx">
+                        </RadzenSplitButtonItem>
+                    </ChildContent>
+                </RadzenSplitButton>
+                <RadzenDataGrid @ref="dataGrid" AllowFiltering="true" AllowColumnResize="true" FilterMode="FilterMode.Simple" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                                PageSize="5" AllowPaging="true" AllowSorting="true" IsLoading="@loading" Responsive="true"
+                                Data="@getTipoPuestosResult" TItem="MiturNetShared.Model.Operation.TipoPuesto" ColumnWidth="300px"
+                                LogicalFilterOperator="LogicalFilterOperator.Or">
+                    <Columns>
+                        <RadzenDataGridColumn TItem="MiturNetShared.Model.Operation.TipoPuesto" Property="Codigo" Title="Código" Frozen="false" Width="70px" TextAlign="TextAlign.Center">
+                            <FooterTemplate>
+                                Total Tipo Puesto: <b>@getTipoPuestosResult?.Count()</b>
+                            </FooterTemplate>
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="MiturNetShared.Model.Operation.TipoPuesto" Property="Descripcion" Title="Descripción" Frozen="false" Width="130px" />
+                        <RadzenDataGridColumn TItem="MiturNetShared.Model.Operation.TipoPuesto" Property="idEstatus" Title="Estatus" Frozen="false" Width="70px" Filterable="false" TextAlign="TextAlign.Center">
+                            <Template Context="details">
+                                @if (details.idEstatus == 1)
+                                {
+                                    <RadzenBadge BadgeStyle="BadgeStyle.Success" Text="Activo" IsPill="true" />
+                                }
+                                else if (details.idEstatus == 2)
+                                {
+                                    <RadzenBadge BadgeStyle="BadgeStyle.Light" Text="Inactivo" IsPill="true" />
+                                }
+                            </Template>
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="MiturNetShared.Model.Operation.TipoPuesto" Property="Id" Title="Acciones" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+
+                            <Template Context="modelTipoPuesto">
+                                <div class="row">
+                                    <div class="col">
+                                        <RadzenButton ButtonStyle="ButtonStyle.Secondary" Icon="edit" Size="ButtonSize.Medium" Click="@((args) =>GridEditButtonClick(args, modelTipoPuesto))" @onclick:stopPropagation="true" />
+                                        <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium" Click="@((args) =>@ShowInlineDialog(args, modelTipoPuesto))" @onclick:stopPropagation="true" />
+                                    </div>
+                                </div>
+                            </Template>
+                        </RadzenDataGridColumn>
+                    </Columns>
+                </RadzenDataGrid>
+            </div>
+        </div>
+    </ChildContent>
+</RadzenContent>
+
+@code
+{
+    async Task ShowInlineDialog(MouseEventArgs args, dynamic data)
+    {
+        var result = await DialogService.OpenAsync("Eliminar Registro", ds =>
+    @<div>
+        <p class="mb-4"><b>Está seguro de elimiar el Registro seleccionado</b>?</p>
+        <RadzenCard Style="width=70px; margin-bottom:10px">
+            <p class="mb-2"><b>Codigo :</b> @data.Codigo</p>
+            <p class="mb-2"><b>Descripción :</b> @data.Descripcion</p>
+        </RadzenCard>
+        <div class="row">
+            <div class="col">
+                <RadzenButton Text="Cancelar" Click="() => ds.Close(false)" ButtonStyle="ButtonStyle.Secondary" Class="mr-1 float-right" />
+                <RadzenButton Text="Eliminar" Click="@((args) =>GridDeleteButtonClick(args, data))" ButtonStyle="ButtonStyle.Danger" Class="mr-1 float-right" />
+            </div>
+        </div>
+    </div>
+       );
+    }
+}

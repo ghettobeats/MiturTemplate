@@ -1,0 +1,169 @@
+﻿<RadzenPanelMenu Multiple="false">
+    <ChildContent>
+        <RadzenPanelMenuItem Icon="home" Path="/" Text="Inicio" />
+        <AuthorizeView Roles="Administrador, Operaciones, Supervisor">
+            <Authorized>
+                <RadzenPanelMenuItem Icon="loyalty" Text="Posicionamiento de OS">
+                    <ChildContent>
+                        <AuthorizeView Roles="Administrador" Context="admin">
+                            <Authorized>
+                                <RadzenPanelMenuItem Path="vista-cliente" Text="Clientes GP">
+                                </RadzenPanelMenuItem>
+                                <RadzenPanelMenuItem Path="vista-persona" Text="Empleados GP">
+                                </RadzenPanelMenuItem>
+                            </Authorized>
+                        </AuthorizeView>
+                        <AuthorizeView Roles="Administrador, Operaciones, Supervisor" Context="admin">
+                            <Authorized>
+                                <RadzenPanelMenuItem Path="localidad" Text="Localidad - Puestos y Turnos">
+                                </RadzenPanelMenuItem>
+                            </Authorized>
+                        </AuthorizeView>
+                        <AuthorizeView Roles="Administrador, Operaciones" Context="dos">
+                            <Authorized>
+                                <RadzenPanelMenuItem Path="asignacion-oficial" Text="Asignación de oficiales">
+                                </RadzenPanelMenuItem>
+                                <RadzenPanelMenuItem Path="ejecucion-turno" Text="Ejecución de turnos">
+                                </RadzenPanelMenuItem>
+                                <RadzenPanelMenuItem Path="operacion-oficiales" Text="Operación oficiales">
+                                </RadzenPanelMenuItem>
+
+                                <RadzenPanelMenuItem Path="oficial-pendiente" Text="OS Turnos Pendientes">
+                                </RadzenPanelMenuItem>
+                            </Authorized>
+                        </AuthorizeView>
+                        <AuthorizeView Roles="Administrador, Operaciones, Supervisor" Context="admin">
+                            <Authorized>
+                                <RadzenPanelMenuItem Text="Reportes">
+                                    <ChildContent>
+                                        <RadzenPanelMenuItem Path="turnos-programados" Text="Turnos programados" />
+                                        <RadzenPanelMenuItem Path="turnos-ejecutados" Text="Turnos Ejecutados" />
+                                        <RadzenPanelMenuItem Path="calculo-oficial" Text="Acumulado de horas de oficiales" />
+                                        <RadzenPanelMenuItem Path="reporte-os-cantidad" Text="Reporte Gerencia" />
+                                        <RadzenPanelMenuItem Path="reporte-os-pivote" Text="Reporte Gerencia Pivote" />
+                                    </ChildContent>
+                                </RadzenPanelMenuItem>
+                            </Authorized>
+                        </AuthorizeView>
+
+                    </ChildContent>
+                </RadzenPanelMenuItem>
+            </Authorized>
+        </AuthorizeView>
+        <AuthorizeView Roles="Administrador, Operaciones, Nomina">
+            <Authorized>
+                <RadzenPanelMenuItem Icon="fact_check" Text="Flujo de Aprobaciones">
+                    <ChildContent>
+                        <RadzenPanelMenuItem Path="flujo-aprobaciones" Text="Flujo Aprobaciones Operaciones" />
+                    </ChildContent>
+                </RadzenPanelMenuItem>
+            </Authorized>
+        </AuthorizeView>
+        @* persona *@
+        <AuthorizeView Roles="Administrador, Operaciones, Nomina">
+            <Authorized>
+                <RadzenPanelMenuItem Icon="contacts" Text="Contactos">
+                    <ChildContent>
+                        <RadzenPanelMenuItem Path="contactos" Text="Listado de contactos" />
+                    </ChildContent>
+                </RadzenPanelMenuItem>
+            </Authorized>
+        </AuthorizeView>
+
+        <AuthorizeView Roles="Administrador, Nomina" Context="admin">
+            <Authorized>
+                <RadzenPanelMenuItem Icon="payment" Selected="false" Text="Nómina">
+                    <ChildContent>
+                        <RadzenPanelMenuItem Path="persona-clase" Text="Configuración Matriz de Pago" />
+                        <RadzenPanelMenuItem Path="dia-feriado" Text="Configurar días feriados" />
+                        <RadzenPanelMenuItem Path="consolidado-nomina" Text="Cálculo Nómina OS" />
+                        <RadzenPanelMenuItem Path="nomina-oficial-gp" Text="Nómina GP" />
+                        <RadzenPanelMenuItem Path="nominalote" Text="Errores de Nómina" />
+                        <RadzenPanelMenuItem Path="nomina-codigo-pago" Text="Código de Pago OS" />
+                        <RadzenPanelMenuItem Path="vista-persona-administrador" Text="Administración OS" />
+                        <RadzenPanelMenuItem Path="vista-cliente-administrador" Text="Administración Cliente" />
+                    </ChildContent>
+                </RadzenPanelMenuItem>
+            </Authorized>
+        </AuthorizeView>
+
+        <AuthorizeView Roles="Administrador, Cuenta" Context="admin">
+            <Authorized>
+                <RadzenPanelMenuItem Icon="account_balance_wallet" Selected="false" Text="Cuentas">
+                    <ChildContent>
+                        <RadzenPanelMenuItem Path="cuenta-admin-cliente" Text="Gestión Cuenta Cliente" />
+                        <RadzenPanelMenuItem Path="cuenta-servicio-extra" Text="Solicitud Servicios Extras" />
+                        <RadzenPanelMenuItem Path="cuenta-consulta-operaciones" Text="Reporte Cuadre Clientes" />
+                    </ChildContent>
+                </RadzenPanelMenuItem>
+            </Authorized>
+        </AuthorizeView>
+        <AuthorizeView Roles="Administrador, Operaciones, Supervisor" Context="admin">
+            <Authorized>
+                <RadzenPanelMenuItem Icon="home_repair_service" Selected="false" Text="Heramientas">
+                    <ChildContent>
+                        <RadzenPanelMenuItem Path="tipo-herramienta-clasificacion" Text="Tipo Clasificación">
+                        </RadzenPanelMenuItem>
+                        <RadzenPanelMenuItem Path="tipo-herramienta" Text="Tipo Herramienta">
+                        </RadzenPanelMenuItem>
+                        <AuthorizeView Roles="Administrador, Operaciones" Context="ope">
+                            <Authorized>
+                                <RadzenPanelMenuItem Path="tipo-herramienta-detalle" Text="Administración Herramientas" />
+                                <RadzenPanelMenuItem Path="tipo-movimiento-herramienta" Text="Movimiento Herramientas" />
+
+                            </Authorized>
+                        </AuthorizeView>
+                    </ChildContent>
+                </RadzenPanelMenuItem>
+            </Authorized>
+        </AuthorizeView>
+
+        <AuthorizeView Roles="Administrador" Context="admin">
+            <Authorized>
+                <RadzenPanelMenuItem Icon="manage_accounts" Selected="false" Text="Administración">
+                    <ChildContent>
+                        <RadzenPanelMenuItem Path="usuario" Text="Usuarios">
+                        </RadzenPanelMenuItem>
+                        <RadzenPanelMenuItem Text="Roles">
+                        </RadzenPanelMenuItem>
+                        <RadzenPanelMenuItem Path="zona-usuario" Text="Zona Usuario">
+                        </RadzenPanelMenuItem>
+                        <RadzenPanelMenuItem Path="zona-persona" Text="Gestión de Supervisores" />
+                        <RadzenPanelMenuItem Path="aprobacion-usuario" Text="Aprobación Usuario" />
+                        <RadzenPanelMenuItem Path="nomina-procesada" Text="Nómina Procesada">
+                        </RadzenPanelMenuItem>
+                        <RadzenPanelMenuItem Path="ejecucion-turno-reversar" Text="Abrir Operación Cerrada">
+                        </RadzenPanelMenuItem>
+
+                        <RadzenPanelMenuItem Text="Parámetros Generales">
+                            <ChildContent>
+                                <RadzenPanelMenuItem Path="almacen" Text="Almacén">
+                                </RadzenPanelMenuItem>
+                                <RadzenPanelMenuItem Path="tipo-nomina" Text="Tipo Nómina">
+                                </RadzenPanelMenuItem>
+                                <RadzenPanelMenuItem Path="tipo-localidad" Text="Tipos de Localidad">
+                                </RadzenPanelMenuItem>
+                                <RadzenPanelMenuItem Path="tipo-contacto" Text="Tipos de Contactos">
+                                </RadzenPanelMenuItem>
+                                <RadzenPanelMenuItem Path="tipo-puesto" Text="Tipos de Puestos">
+                                </RadzenPanelMenuItem>
+                                <RadzenPanelMenuItem Path="tipo-turno" Text="Tipos de Turnos">
+                                </RadzenPanelMenuItem>
+                                <RadzenPanelMenuItem Path="cliente-local" Text="Clientes Locales">
+                                </RadzenPanelMenuItem>
+                                <RadzenPanelMenuItem Path="localizador" Text="Localizadores">
+                                </RadzenPanelMenuItem>
+                                <RadzenPanelMenuItem Path="provincia" Text="Provincias">
+                                </RadzenPanelMenuItem>
+                                <RadzenPanelMenuItem Path="region" Text="Regiones">
+                                </RadzenPanelMenuItem>
+                                <RadzenPanelMenuItem Path="zona" Text="Zonas">
+                                </RadzenPanelMenuItem>
+                            </ChildContent>
+                        </RadzenPanelMenuItem>
+                    </ChildContent>
+                </RadzenPanelMenuItem>
+            </Authorized>
+        </AuthorizeView>
+    </ChildContent>
+</RadzenPanelMenu>

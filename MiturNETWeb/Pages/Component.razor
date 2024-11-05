@@ -1,0 +1,21 @@
+﻿@*<RadzenGrid AllowFiltering="true" AllowPaging="true" Count="result.TotalCount" PageSize="getUserTableDataInput.MaxResultCount" LoadData="LoadData" AllowSorting="true" Data="@result.Items" ColumnWidth="200px">
+        <Columns>
+            @foreach (var key in columns.Keys)
+            {
+                <RadzenGridColumn TItem="ExpandoObject" Property="@key" Title="@columns[key].ToString()">
+                    <Template Context="data">
+                        <span>@((data as IDictionary<string, object>)[key].ToString())</span>
+                    </Template>
+                    <FilterTemplate Context="data">
+                        <i class="material-icons">search</i>
+                        <input @onchange="@((arg)=>SetFilterValue(data.Property,arg))" />
+                    </FilterTemplate>
+                </RadzenGridColumn>
+            }
+        </Columns>
+    </RadzenGrid>
+
+@code {
+
+}
+*@

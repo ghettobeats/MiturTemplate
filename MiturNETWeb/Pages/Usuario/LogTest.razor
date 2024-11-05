@@ -1,0 +1,16 @@
+﻿@page "/logTest"
+@inject SecurityService security;
+@inject IJSRuntime js;
+
+<RadzenButton Click="@LogUserName">check</RadzenButton>
+@code {
+    async Task LogUserName(){
+        var auth = await security.Refresh();
+
+        if (auth)
+            await js.InvokeVoidAsync("console.log", $"Esta Logeado {auth}");
+        else
+          await js.InvokeVoidAsync("console.log", "you are not loggin");
+        //  var auth = await security.
+    }
+}

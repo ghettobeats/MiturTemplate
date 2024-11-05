@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "pivottable@2.23.0",
+      "destination": "wwwroot/pivottable/",
+      "files": [
+        "pivot.min.js",
+        "pivot.min.css"
+      ]
+    },
+    {
+      "library": "jqueryui@1.12.1",
+      "destination": "wwwroot/js",
+      "files": [
+        "jquery-ui.min.js"
+      ]
+    },
+    {
+      "library": "jquery@3.6.0",
+      "destination": "wwwroot/assets/jquery/"
+    }
+  ]
+}

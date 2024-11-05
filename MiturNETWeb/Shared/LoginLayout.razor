@@ -1,0 +1,50 @@
+﻿@*@inherits BaseComponentInject
+@layout BlankLayout
+<RadzenDialog />
+<RadzenNotification />
+<RadzenTooltip />
+
+<RadzenBody style="margin-left: 0px; height:100%; padding-bottom:300px;  background-color:#05004b" Expanded="true">
+  <ChildContent>
+    <div class="row justify-content-center">
+      <div class="justify-content-center col-xl-5 col-md-7">
+        <RadzenCard style="margin-top: 6rem">
+         
+           
+            @Body
+          
+        
+        </RadzenCard>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenBody>*@
+
+@using Radzen
+@using Radzen.Blazor
+
+@inherits BaseComponentInject
+
+<RadzenDialog />
+<RadzenNotification />
+<RadzenTooltip />
+<RadzenContextMenu />
+
+<RadzenBody  @ref="body0" style="margin-left: 0px; height:800px; background-color: #05004b;" Expanded="true">
+  <ChildContent>
+    <div class="row justify-content-center">
+      <div class="justify-content-center col-xl-5 col-md-7">
+        <RadzenCard style="margin-top: 8rem">
+          <ChildContent>
+            <RadzenContentContainer Name="main">
+            @Body
+            </RadzenContentContainer>
+          </ChildContent>
+        </RadzenCard>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenBody>
+
+
+

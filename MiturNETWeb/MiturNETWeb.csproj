@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<WarningsAsErrors>CS8600;CS8602;CS8603</WarningsAsErrors>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="wwwroot\assets\download\**" />
+		<Content Remove="wwwroot\assets\download\**" />
+		<EmbeddedResource Remove="wwwroot\assets\download\**" />
+		<None Remove="wwwroot\assets\download\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="Pages\ClienteLocal.razor.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Remove="Pages\ClienteLocal.razor" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Pages.zip" />
+		<None Remove="Pages\Usuario\LoginUsuario.razor.css" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Pages\Usuario\LoginUsuario.razor.css">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="Blazored.LocalStorage" Version="4.4.0" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.12" />
+		<PackageReference Include="Radzen.Blazor" Version="5.5.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\MiturNetApplication\MiturNetApplication.csproj" />
+		<ProjectReference Include="..\MiturNetShared\MiturNetShared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="wwwroot\assets\images\" />
+		<Folder Include="wwwroot\download\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
+</Project>

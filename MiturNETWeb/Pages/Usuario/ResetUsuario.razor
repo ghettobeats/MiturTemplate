@@ -1,0 +1,55 @@
+﻿@page "/reset-usuario"
+
+@inherits BaseComponentInject
+
+<RadzenPanel AllowCollapse="false">
+    <ChildContent>
+        <div class="row">
+            <h4 class="d-inline-flex align-items-center">
+                <RadzenIcon Icon="add" Class="mr-1" style="color:#1151F3" /> <RadzenLabel Text= "Resetear Contraseña Usuario" style="font-weight:700; color:#1151F3" />
+            </h4>
+        </div>
+        <RadzenFieldset>
+            <div class="row">
+                <div class="col-md-12">
+                    <RadzenTemplateForm Data="@dataResetUsuario" Visible="@(dataResetUsuario != null)" TItem="MiturNetShared.Model.Operation.AccountResetPassword" Submit="@btnSave">
+                        <ChildContent>
+                            <div style="margin-bottom: 1rem" class="row">
+                                <div class="col-md-4">
+                                    <RadzenLabel Text="Contraseña" Component="Password" style="width: 100%">
+                                    </RadzenLabel>
+                                </div>
+                                <div class="col-md-8">
+                                   <RadzenPassword MaxLength="60" style="display: block; width: 100%" @bind-Value="@dataResetUsuario.Password" Name="Password">
+                                    </RadzenPassword>
+                                    <RadzenRequiredValidator Component="Password" Text="Contraseña es requerido" style="position: absolute">
+                                    </RadzenRequiredValidator>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 1rem" class="row">
+                                <div class="col-md-4">
+                                    <RadzenLabel Text="Confirmar Contraseña" Component="ConfirmPassword" style="width: 100%">
+                                    </RadzenLabel>
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenPassword MaxLength="60" style="display: block; width: 100%" @bind-Value="@dataResetUsuario.ConfirmPassword" Name="ConfirmPassword">
+                                    </RadzenPassword>
+                                    <RadzenRequiredValidator Component="ConfirmPassword" Text="Confirmar Contraseña es requerido" style="position: absolute">
+                                    </RadzenRequiredValidator>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col offset-sm-6">
+                                    <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Aceptar" ButtonStyle="ButtonStyle.Primary">
+                                    </RadzenButton>
+                                    <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel" Click="@btnCancel">
+                                    </RadzenButton>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </RadzenTemplateForm>
+                </div>
+            </div>
+        </RadzenFieldset>
+    </ChildContent>
+</RadzenPanel>

@@ -1,0 +1,124 @@
+﻿@page "/edit-usuario/{Id}"
+
+@inherits BaseComponentInject
+
+
+<RadzenPanel AllowCollapse="false">
+    <ChildContent>
+        <div class="row">
+            <h4 class="d-inline-flex align-items-center">
+                <RadzenIcon Icon="add" Class="mr-1" style="color:#1151F3" /> <RadzenLabel Text="Editar Usuario" style="font-weight:700; color:#1151F3" />
+            </h4>
+        </div>
+        <RadzenFieldset>
+            <div class="row">
+
+                <div class="col-md-12">
+                    <RadzenTemplateForm Data="@dataUsuario" Visible="@(dataUsuario != null)" TItem="MiturNetShared.Model.Operation.UsuarioUpdate" Submit="@btnSave">
+                        <ChildContent>
+                            <div style="margin-bottom: 1rem" class="row">
+                                <div class="col-md-3">
+                                    <RadzenLabel Text="Nombre(s)" Component="Nombres" style="width: 100%">
+                                    </RadzenLabel>
+                                </div>
+                                <div class="col-md-9">
+                                    <RadzenTextBox MaxLength="60" style="width: 100%" @bind-Value="@dataUsuario.VFirstName" Name="VFirstName">
+                                    </RadzenTextBox>
+                                    <RadzenRequiredValidator Component="VFirstName" Text="Este campo es requerido" style="position: absolute">
+                                    </RadzenRequiredValidator>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 1rem" class="row">
+                                <div class="col-md-3">
+                                    <RadzenLabel Text="Apellido(s)" Component="Apellidos" style="width: 100%">
+                                    </RadzenLabel>
+                                </div>
+                                <div class="col-md-9">
+                                    <RadzenTextBox MaxLength="60" style="display: block; width: 100%" @bind-Value="@dataUsuario.VLastName" Name="VLastName">
+                                    </RadzenTextBox>
+                                    <RadzenRequiredValidator Component="VLastName" Text="Este campo es requerido" style="position: absolute">
+                                    </RadzenRequiredValidator>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 1rem" class="row">
+                                <div class="col-md-3">
+                                    <RadzenLabel Text="Nombre de usuario" Component="Usuario" style="width: 100%">
+                                    </RadzenLabel>
+                                </div>
+                                <div class="col-md-9">
+                                    <RadzenTextBox MaxLength="60" style="display: block; width: 100%" @bind-Value="@dataUsuario.UserName" Name="UserName">
+                                    </RadzenTextBox>
+                                    <RadzenRequiredValidator Component="UserName" Text="Este campo es requerido" style="position: absolute">
+                                    </RadzenRequiredValidator>
+                                </div>
+                            </div>
+
+@*                            <div style="margin-bottom: 1rem" class="row">
+                                <div class="col-md-3">
+                                    <RadzenLabel Text="Género" Component="Genero" style="width: 100%">
+                                    </RadzenLabel>
+                                </div>
+                                <div class="col-md-9">
+                                    <RadzenDropDown AllowClear="true" AllowFiltering="true" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                                                    Data="@genero"
+                                                    @bind-Value="@dataUsuario.VGender"
+                                                    Placeholder="Género..." TextProperty="VGender" ValueProperty="VGender"  Name="VGender" />
+
+                                    <RadzenRequiredValidator Component="VGender" Text="Este campo es requerido" style="position: absolute">
+                                    </RadzenRequiredValidator>
+                                </div>
+                            </div>*@
+
+                             <div style="margin-bottom: 1rem" class="row">
+                                <div class="col-md-3">
+                                    <RadzenLabel Text="Roles" Component="idRole" style="width: 100%">
+                                    </RadzenLabel>
+                                </div>
+                                <div class="col-md-9">
+                                    <RadzenDropDownDataGrid Data="@dataRoles" TextProperty="Name" ValueProperty="Id" Placeholder="Seleccionar el Rol" ShowSearch="false" style="display: block; width: 100%" @bind-Value="@(dataUsuario.RoleId)" Name="RoleId">
+                                    </RadzenDropDownDataGrid>
+                                    <RadzenRequiredValidator Component="RoleId" Text="Este campo es requerido" style="position: absolute" DefaultValue="0">
+                                    </RadzenRequiredValidator>
+                                </div>
+                            </div>
+
+@*                            <div style="margin-bottom: 1rem" class="row">
+                                <div class="col-md-4">
+                                    <RadzenLabel Text="Contraseña" Component="Password" style="width: 100%">
+                                    </RadzenLabel>
+                                </div>
+                                <div class="col-md-8">
+                                   <RadzenPassword MaxLength="60" style="display: block; width: 100%" @bind-Value="@dataUsuario.Password" Name="Password">
+                                    </RadzenPassword>
+                                    <RadzenRequiredValidator Component="Password" Text="Contraseña es requerido" style="position: absolute">
+                                    </RadzenRequiredValidator>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 1rem" class="row">
+                                <div class="col-md-4">
+                                    <RadzenLabel Text="Confirmar Contraseña" Component="ConfirmPassword" style="width: 100%">
+                                    </RadzenLabel>
+                                </div>
+                                <div class="col-md-8">
+                                    <RadzenPassword MaxLength="60" style="display: block; width: 100%" @bind-Value="@dataUsuario.ConfirmPassword" Name="ConfirmPassword">
+                                    </RadzenPassword>
+                                    <RadzenRequiredValidator Component="ConfirmPassword" Text="Confirmar Contraseña es requerido" style="position: absolute">
+                                    </RadzenRequiredValidator>
+                                </div>
+                            </div>*@
+
+                            <div class="row">
+                                <div class="col offset-sm-3">
+                                    <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Guardar" ButtonStyle="ButtonStyle.Primary">
+                                    </RadzenButton>
+                                    <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancelar" Click="@btnCancel">
+                                    </RadzenButton>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </RadzenTemplateForm>
+                </div>
+            </div>
+        </RadzenFieldset>
+    </ChildContent>
+</RadzenPanel>

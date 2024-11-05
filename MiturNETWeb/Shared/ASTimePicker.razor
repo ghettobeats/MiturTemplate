@@ -1,0 +1,36 @@
+﻿@using Radzen.Blazor
+<RadzenDatePicker style="display: block; width: 100%"
+                  @bind-Value="@dateTime"
+                  TValue="DateTime?"
+                  Change="UpdateTime"
+                  Name="@Name"
+                  DateFormat="hh:mm tt"
+                  ShowTime="true"
+                  HourFormat="12"
+                  TimeOnly="true" />
+
+@code {
+    [Parameter]
+    public TimeOnly TimeValue { get; set; }
+
+    [Parameter]
+    public EventCallback<TimeOnly> TimeValueChanged { get; set; }
+
+    [Parameter]
+    public string Name { get; set; }
+
+    private DateTime? dateTime { get; set; }
+
+    protected override void OnInitialized()
+    {
+        dateTime = (new DateTime()).Add(TimeValue.ToTimeSpan());
+        base.OnInitialized();
+    }
+
+    void UpdateTime(DateTime? dateTime)
+    {
+        if (dateTime is null) return;
+        TimeValue = TimeOnly.FromDateTime(dateTime.Value); ;
+        TimeValueChanged.InvokeAsync(TimeValue);
+    }
+}

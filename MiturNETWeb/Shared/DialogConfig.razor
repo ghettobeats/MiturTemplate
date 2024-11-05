@@ -1,0 +1,41 @@
+﻿@inherits BaseComponentInject
+
+<RadzenPanel AllowCollapse="false" Style=" margin: 5px auto;">
+    <HeaderTemplate>
+        <h4 class="m-0 d-flex align-items-center">
+            <RadzenIcon Icon="note_add" Class="mr-1" Style="color:darkred" /> <RadzenLabel Text="¿Está seguro de procesar la Nómina Seleccionada?" style="font-weight:700; color:darkblue" />
+        </h4>
+    </HeaderTemplate>
+    <ChildContent>
+        <RadzenCard Class="mt-3">
+            <div style="margin-bottom: 1rem" class="row">
+                <div class="col-md-3">
+                    <RadzenLabel Text=@TitleOne style="width: 100%; text-align:right" />
+                </div>
+                <div class="col-md-9">
+                    <RadzenLabel Text=@TitleFieldOne style="width: 100%; font-weight:800" />
+                </div>
+            </div>
+
+            <div style="margin-bottom: 1rem" class="row">
+                <div class="col-md-3">
+                    <RadzenLabel Text=@TitleTwo style="width: 100%; text-align:right" />
+                </div>
+                <div class="col-md-9">
+                    <RadzenLabel Text=@TitleFieldTwo style="width: 100%; font-weight:800" />
+                </div>
+            </div>
+        </RadzenCard>
+        <RadzenPanel AllowCollapse="false" Style=" margin-top: 8px;">
+            <ChildContent>
+                <div class="row mt-10">
+                    <div class="col">
+                        <RadzenButton Text="Aceptar" Click="@Accept" ButtonStyle="ButtonStyle.Success" Class="mr-1 float-right" />
+                        <RadzenButton Text="Cancelar" Click="@CloseDialog" ButtonStyle="ButtonStyle.Secondary" Class="mr-2 float-right" />
+                    </div>
+                </div>
+            </ChildContent>
+        </RadzenPanel>
+
+    </ChildContent>
+</RadzenPanel>

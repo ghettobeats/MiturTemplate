@@ -1,0 +1,55 @@
+﻿@page "/login"
+@layout LoginLayout
+@inherits BaseComponentInject
+
+<RadzenContent Container="main">
+@*<RadzenPanel AllowCollapse="false">*@   
+        <div class="row">
+            <div class="col-12 rz-text-align-center">
+                <RadzenImage Path="assets/images/mitur.png"></RadzenImage>
+            </div>       
+        </div>      
+        <RadzenFieldset>
+            <div class="row">
+                <div class="col-md-12">
+                    <RadzenTemplateForm Data="@dataLoginUsuario" Visible="@(dataLoginUsuario != null)" TItem="MiturNetShared.Model.Operation.AccountLogin" Submit="@btnSave">
+                        <ChildContent>
+
+
+                            <div class="form-group" style="margin-bottom: 1rem">
+                                <RadzenTextBox MaxLength="60" style="display: block; width: 100%" @bind-Value="@dataLoginUsuario.UserName" Name="UserName">
+                                </RadzenTextBox>
+                                <RadzenRequiredValidator Component="UserName" Text="Usuario es requerido" style="position: absolute">
+                                </RadzenRequiredValidator>
+                                <RadzenLabel Text="Nombre Usuario" Component="UserName" style="width: 100%">
+                                </RadzenLabel>
+
+                            </div>
+                            <div class="form-group" style="margin-bottom: 1rem">
+                                <RadzenPassword MaxLength="60" style="display: block; width: 100%" @bind-Value="@dataLoginUsuario.Password" Name="Password">
+                                </RadzenPassword>
+                                <RadzenRequiredValidator Component="Password" Text="Contraseña es requerido" style="position: absolute">
+                                </RadzenRequiredValidator>
+                                <RadzenLabel Text="Contraseña" Component="Password" style="width: 100%">
+                                </RadzenLabel>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 1rem">
+                                <RadzenSwitch @bind-Value=@dataLoginUsuario.RememberMe />
+                                <RadzenLabel Text="Recordame?" Component="RememberMe" style="width: 100%">
+                                </RadzenLabel>
+                            </div>
+
+                            <div class="row">
+                                <div class="col offset-sm-8">
+                                    <RadzenButton ButtonType="ButtonType.Submit" Text="Iniciar Sesión" ButtonStyle="ButtonStyle.Primary">
+                                    </RadzenButton>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </RadzenTemplateForm>
+                </div>
+            </div>
+        </RadzenFieldset>
+   </RadzenContent>
+@*</RadzenPanel>*@
